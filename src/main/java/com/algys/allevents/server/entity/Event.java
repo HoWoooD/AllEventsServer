@@ -18,6 +18,7 @@ public class Event {
     private String title;
 
     @Column(name = "event_date",nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date eventDate;
 
     public Event() {

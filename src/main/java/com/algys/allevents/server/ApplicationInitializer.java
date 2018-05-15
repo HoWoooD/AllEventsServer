@@ -1,6 +1,7 @@
 package com.algys.allevents.server;
 
 import com.algys.allevents.server.config.WebConfig;
+import com.algys.allevents.server.repository.EventRepository;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
