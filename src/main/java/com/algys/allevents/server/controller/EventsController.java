@@ -1,35 +1,42 @@
 package com.algys.allevents.server.controller;
 
 import com.algys.allevents.server.entity.Event;
-import com.algys.allevents.server.repository.EventRepository;
+import com.algys.allevents.server.service.EventsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/events")
 public class EventsController {
 
     @Autowired
-    private EventRepository eventRepository;
+    private EventsService service;
 
-    @RequestMapping(value = "/get", method = RequestMethod.GET)
+
+
+    @RequestMapping(value = "/events", method = RequestMethod.GET)
     @ResponseBody
-    public Event getEvents(){
-        eventRepository.findAll();
-        return createMockEvent();
+    public List<Event> getAllEvents(){
+        return service.getAll();
     }
 
-    private Event createMockEvent() {
-        Event event = new Event();
-        event.setId(1);
-        event.setEventDate(new Date());
-        event.setTitle("My first event");
+    @RequestMapping(value = "/events/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Optional<Event> getEvent(@PathVariable("id") long eventID){
+        return service.getByID(eventID);
+    }
 
-        return event;
+    @RequestMapping(value = "/events", method = RequestMethod.POST)
+    @ResponseBody
+    public Event saveEvent(@RequestBody Event event){
+        return service.save(event);
+    }
+
+    @RequestMapping(value = "/events/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void delete(@PathVariable long id){
+        service.remove(id);
     }
 }
