@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.algys.allevents.server")
-public class WebConfig extends WebMvcConfigurerAdapter{
+public class WebConfig extends WebMvcConfigurationSupport {
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {

@@ -5,8 +5,8 @@ import com.algys.allevents.server.service.EventsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class EventsController {
@@ -15,8 +15,13 @@ public class EventsController {
     private EventsService service;
 
 
-
     @RequestMapping(value = "/events", method = RequestMethod.GET)
+    @ResponseBody
+    public Event getAllEventsTest(){
+        return createMock();
+    }
+
+    @RequestMapping(value = "/events/get", method = RequestMethod.GET)
     @ResponseBody
     public List<Event> getAllEvents(){
         return service.getAll();
@@ -24,7 +29,7 @@ public class EventsController {
 
     @RequestMapping(value = "/events/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Optional<Event> getEvent(@PathVariable("id") long eventID){
+    public Event getEvent(@PathVariable("id") long eventID){
         return service.getByID(eventID);
     }
 
@@ -38,5 +43,13 @@ public class EventsController {
     @ResponseBody
     public void delete(@PathVariable long id){
         service.remove(id);
+    }
+
+    public Event createMock(){
+        Event first = new Event();
+        first.setId(1);
+        first.setEventDate(new Date());
+        first.setTitle("Концерт");
+        return first;
     }
 }

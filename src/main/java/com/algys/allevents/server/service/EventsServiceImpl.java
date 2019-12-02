@@ -20,8 +20,8 @@ public class EventsServiceImpl implements EventsService {
     }
 
     @Override
-    public Optional<Event> getByID(long id) {
-        return repository.findById(id);
+    public Event getByID(long id) {
+        return null;
     }
 
     @Override

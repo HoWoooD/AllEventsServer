@@ -17,8 +17,8 @@ public class Event {
     @Column(name = "title", nullable = false, length = 50)
     private String title;
 
-    @Column(name = "event_date",nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "eventDate",nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date eventDate;
 
     public Event() {
@@ -47,4 +47,21 @@ public class Event {
     public void setEventDate(Date eventDate) {
         this.eventDate = eventDate;
     }
+
+    /*public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }*/
+
 }
